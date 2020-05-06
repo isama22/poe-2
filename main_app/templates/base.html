@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Poe</title>
+  <link rel="stylesheet" href="{% static 'css/poems.css' %}">
+</head>
+<body>
+  <header>
+   <nav>
+      <div>
+        <ul>
+          <li><a href="/">Poe</a></li>
+          <ul>
+            <!-- changes below -->
+            <li><a href="{% url 'about' %}">About</a></li>
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'poes_create' %}">Make A Post</a></li>
+              <li><a href="{% url 'index' %}">Poes</a></li>
+              <li><a href="{% url 'genres' %}">Genres</a></li>
+              <!-- <li>(random poem inspo generator)</li> -->
+              <li><a href="{% url 'logout' %}">Log Out</a></li>
+            {% else %}
+            <!-- <li><a href="{% url 'about' %}">Log In</a></li> -->
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            <li><a href="{% url 'login' %}">Log In</a></li>
+            {% endif %}
+          </ul>
+      </div>
+    </nav>
+  </header>
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>
